@@ -19,9 +19,9 @@ describe("Lock", function () {
     // Contracts are deployed using the first signer/account by default
     const [owner, otherAccount] = await ethers.getSigners();
 
-    const Lock = await ethers.getContractFactory("Lock");
-    const lock = await Lock.deploy(unlockTime, { value: lockedAmount });
-
+    const lock = await ethers.getContractFactory("ChatApp");
+    const Lock = await lock.deploy(unlockTime, { value: lockedAmount });
+    console.log(`Contract Address : ${Lock.address}`)
     return { lock, unlockTime, lockedAmount, owner, otherAccount };
   }
 
