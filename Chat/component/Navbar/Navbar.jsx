@@ -44,9 +44,10 @@ const Navbar = () => {
           <Image src={images.logo} alt ="logo" width={50} height={50}/>
         </div>
         <div className={Style.Navbar_box_right}>
+            {/*dektop*/}
           <div className={Style.Navbar_box_right_menu}>
             {menuItems.map((el,i) => (
-              <div onClick={() => setActive(i+1) } key = {1+ 1} className={`${Style.Navbar_box_right_menu_items} ${active == i +1 ?
+              <div onClick={() => setActive(i+1) } key = {i+ 1} className={`${Style.Navbar_box_right_menu_items} ${active == i +1 ?
               Style.active_btn :"" }`}>
                 <Link className={Style.Navbar_box_right_menu_items_link} href={el.link}>
                   {el.menu}
@@ -54,6 +55,42 @@ const Navbar = () => {
               </div>
             ))}
           </div>
+            {/* mobile*/}
+            {!open && (
+                <div className={Style.Mobile_box_right_menu}>
+            {menuItems.map((el,i) => (
+              <div onClick={() => setActive(i+1) } key = {i+ 1} className={`${Style.Mobile_box_right_menu_items} ${active == i +1 ?
+              Style.active_btn :"" }`}>
+                <Link className={Style.Mobile_box_right_menu_items_link} href={el.link}>
+                  {el.menu}
+                </Link>
+              </div>
+            ))}
+            <P className = {Style.Moble_menu_btn}></P>
+            <Image src = {images.close} alt="close" width = {50} height ={50} onClick={() => setOpen(false)}></Image>
+          </div>
+            ) }
+            {/* connect wallet */}
+            <div className = {Style.Navbar_box_right_connect}>
+              {account == ""? (
+                <button onClick ={() => connectWallet()}>
+                    {" "}
+                    <span>Connect Wallet</span>
+                </button>
+              ):(
+                <button onClick = {() => setOpenModel(true)}>
+                    {" "}
+                    <Image src={userName ? images.accountName : images.creat2} alt="Account Image" width={20} height={20}/>
+                    {" "}
+                    <small>{userName || "create account"}</small>
+                </button>
+              )
+              }   
+            </div>
+            <div className={Style.Navbar_box_right_open} onClick={() => setOpen(true)}>
+                <Image src={images.open} alt="open" width={30} height={30} />
+
+            </div>
         </div>
         </div>
     </div>
